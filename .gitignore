@@ -4,5 +4,6 @@ models
 val2017
 calibration
 calibration.txt
-calib.table
 *.engine
+.vscode/**
+!.vscode/c_cpp_properties.json
