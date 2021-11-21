@@ -1,18 +1,18 @@
 # How to use custom models in DeepStream
 
-* [Requirements](#requirements)
-* [Editing files](#editing-files)
-* [Compile lib](#compile-lib)
-* [Understanding and editing deepstream_app_config](#understanding-and-editing-deepstream_app_config)
-* [Understanding and editing config_infer_primary](#understanding-and-editing-config_infer_primary)
-* [Testing model](#testing-model)
+- [Requirements](#requirements)
+- [Editing files](#editing-files)
+- [Compile lib](#compile-lib)
+- [Understanding and editing deepstream_app_config](#understanding-and-editing-deepstream_app_config)
+- [Understanding and editing config_infer_primary](#understanding-and-editing-config_infer_primary)
+- [Testing model](#testing-model)
 
 ##
 
 ### Requirements
 
-* [DeepStream-Yolo](https://github.com/marcoslucianops/DeepStream-Yolo)
-* [Pre-treined YOLO model](https://github.com/AlexeyAB/darknet)
+- [DeepStream-Yolo](https://github.com/marcoslucianops/DeepStream-Yolo)
+- [Pre-treined YOLO model](https://github.com/AlexeyAB/darknet)
 
 ##
 
@@ -60,13 +60,13 @@ config-file=config_infer_primary_yoloV2.txt
 
 ### Compile lib
 
-* x86 platform
+- x86 platform
 
 ```
 CUDA_VER=11.4 make -C nvdsinfer_custom_impl_Yolo
 ```
 
-* Jetson platform
+- Jetson platform
 
 ```
 CUDA_VER=10.2 make -C nvdsinfer_custom_impl_Yolo
@@ -99,7 +99,7 @@ nvbuf-memory-type=0
 
 #### source
 
-* Example for 1 source:
+- Example for 1 source:
 
 ```
 [source0]
@@ -114,7 +114,7 @@ gpu-id=0
 cudadec-memtype=0
 ```
 
-* Example for 1 duplcated source:
+- Example for 1 duplcated source:
 
 ```
 [source0]
@@ -126,7 +126,7 @@ gpu-id=0
 cudadec-memtype=0
 ```
 
-* Example for 2 sources:
+- Example for 2 sources:
 
 ```
 [source0]
@@ -211,21 +211,21 @@ model-color-format=0
 
 ##
 
-#### model-engine-file 
+#### model-engine-file
 
-* Example for batch-size=1 and network-mode=2
+- Example for batch-size=1 and network-mode=2
 
 ```
 model-engine-file=model_b1_gpu0_fp16.engine
 ```
 
-* Example for batch-size=1 and network-mode=0
+- Example for batch-size=1 and network-mode=0
 
 ```
 model-engine-file=model_b1_gpu0_fp32.engine
 ```
 
-* Example for batch-size=2 and network-mode=0
+- Example for batch-size=2 and network-mode=0
 
 ```
 model-engine-file=model_b2_gpu0_fp32.engine
@@ -250,7 +250,7 @@ network-mode=0
 
 ##
 
-#### num-detected-classes 
+#### num-detected-classes
 
 ```
 num-detected-classes=80

@@ -6,15 +6,15 @@
 #include <math.h>
 #include "convolutional_layer.h"
 
-nvinfer1::ILayer* convolutionalLayer(
+nvinfer1::ILayer *convolutionalLayer(
     int layerIdx,
-    std::map<std::string, std::string>& block,
-    std::vector<float>& weights,
-    std::vector<nvinfer1::Weights>& trtWeights,
-    int& weightPtr,
-    int& inputChannels,
-    nvinfer1::ITensor* input,
-    nvinfer1::INetworkDefinition* network)
+    std::map<std::string, std::string> &block,
+    std::vector<float> &weights,
+    std::vector<nvinfer1::Weights> &trtWeights,
+    int &weightPtr,
+    int &inputChannels,
+    nvinfer1::ITensor *input,
+    nvinfer1::INetworkDefinition *network)
 {
     assert(block.at("type") == "convolutional");
     assert(block.find("filters") != block.end());
@@ -58,7 +58,7 @@ nvinfer1::ILayer* convolutionalLayer(
 
     if (batchNormalize == false)
     {
-        float* val = new float[filters];
+        float *val = new float[filters];
         for (int i = 0; i < filters; ++i)
         {
             val[i] = weights[weightPtr];
@@ -98,7 +98,7 @@ nvinfer1::ILayer* convolutionalLayer(
             bnRunningVar.push_back(sqrt(weights[weightPtr] + 1.0e-5));
             weightPtr++;
         }
-        float* val = new float[size];
+        float *val = new float[size];
         for (int i = 0; i < size; ++i)
         {
             val[i] = weights[weightPtr];
@@ -109,7 +109,7 @@ nvinfer1::ILayer* convolutionalLayer(
         trtWeights.push_back(convBias);
     }
 
-    nvinfer1::IConvolutionLayer* conv = network->addConvolution(
+    nvinfer1::IConvolutionLayer *conv = network->addConvolution(
         *input, filters, nvinfer1::DimsHW{kernelSize, kernelSize}, convWt, convBias);
     assert(conv != nullptr);
     std::string convLayerName = "conv_" + std::to_string(layerIdx);
@@ -122,7 +122,7 @@ nvinfer1::ILayer* convolutionalLayer(
         conv->setNbGroups(groups);
     }
 
-    nvinfer1::ILayer* output = conv;
+    nvinfer1::ILayer *output = conv;
 
     if (batchNormalize == true)
     {
@@ -130,20 +130,19 @@ nvinfer1::ILayer* convolutionalLayer(
         nvinfer1::Weights shift{nvinfer1::DataType::kFLOAT, nullptr, size};
         nvinfer1::Weights scale{nvinfer1::DataType::kFLOAT, nullptr, size};
         nvinfer1::Weights power{nvinfer1::DataType::kFLOAT, nullptr, size};
-        float* shiftWt = new float[size];
+        float *shiftWt = new float[size];
         for (int i = 0; i < size; ++i)
         {
-            shiftWt[i]
-                = bnBiases.at(i) - ((bnRunningMean.at(i) * bnWeights.at(i)) / bnRunningVar.at(i));
+            shiftWt[i] = bnBiases.at(i) - ((bnRunningMean.at(i) * bnWeights.at(i)) / bnRunningVar.at(i));
         }
         shift.values = shiftWt;
-        float* scaleWt = new float[size];
+        float *scaleWt = new float[size];
         for (int i = 0; i < size; ++i)
         {
             scaleWt[i] = bnWeights.at(i) / bnRunningVar[i];
         }
         scale.values = scaleWt;
-        float* powerWt = new float[size];
+        float *powerWt = new float[size];
         for (int i = 0; i < size; ++i)
         {
             powerWt[i] = 1.0;
@@ -153,7 +152,7 @@ nvinfer1::ILayer* convolutionalLayer(
         trtWeights.push_back(scale);
         trtWeights.push_back(power);
 
-        nvinfer1::IScaleLayer* bn = network->addScale(
+        nvinfer1::IScaleLayer *bn = network->addScale(
             *output->getOutput(0), nvinfer1::ScaleMode::kCHANNEL, shift, scale, power);
         assert(bn != nullptr);
         std::string bnLayerName = "batch_norm_" + std::to_string(layerIdx);

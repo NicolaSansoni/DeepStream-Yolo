@@ -8,9 +8,9 @@
 
 #include "NvInfer.h"
 
-nvinfer1::ILayer* dropoutLayer(
+nvinfer1::ILayer *dropoutLayer(
     float probability,
-    nvinfer1::ITensor* input,
-    nvinfer1::INetworkDefinition* network);
+    nvinfer1::ITensor *input,
+    nvinfer1::INetworkDefinition *network);
 
 #endif

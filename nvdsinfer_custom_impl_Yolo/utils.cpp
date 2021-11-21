@@ -30,14 +30,18 @@
 #include <algorithm>
 #include <math.h>
 
-static void leftTrim(std::string& s)
+static void leftTrim(std::string &s)
 {
-    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) { return !isspace(ch); }));
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch)
+                                    { return !isspace(ch); }));
 }
 
-static void rightTrim(std::string& s)
+static void rightTrim(std::string &s)
 {
-    s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) { return !isspace(ch); }).base(), s.end());
+    s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch)
+                         { return !isspace(ch); })
+                .base(),
+            s.end());
 }
 
 std::string trim(std::string s)
@@ -57,13 +61,14 @@ bool fileExists(const std::string fileName, bool verbose)
 {
     if (!std::experimental::filesystem::exists(std::experimental::filesystem::path(fileName)))
     {
-        if (verbose) std::cout << "File does not exist: " << fileName << std::endl;
+        if (verbose)
+            std::cout << "File does not exist: " << fileName << std::endl;
         return false;
     }
     return true;
 }
 
-std::vector<float> loadWeights(const std::string weightsFilePath, const std::string& networkType)
+std::vector<float> loadWeights(const std::string weightsFilePath, const std::string &networkType)
 {
     assert(fileExists(weightsFilePath));
     std::cout << "\nLoading pre-trained weights" << std::endl;
@@ -88,8 +93,9 @@ std::vector<float> loadWeights(const std::string weightsFilePath, const std::str
     {
         file.read(floatWeight, 4);
         assert(file.gcount() == 4);
-        weights.push_back(*reinterpret_cast<float*>(floatWeight));
-        if (file.peek() == std::istream::traits_type::eof()) break;
+        weights.push_back(*reinterpret_cast<float *>(floatWeight));
+        if (file.peek() == std::istream::traits_type::eof())
+            break;
     }
     std::cout << "Loading weights of " << networkType << " complete"
               << std::endl;
@@ -110,7 +116,7 @@ std::string dimsToString(const nvinfer1::Dims d)
     return s.str();
 }
 
-int getNumChannels(nvinfer1::ITensor* t)
+int getNumChannels(nvinfer1::ITensor *t)
 {
     nvinfer1::Dims d = t->getDimensions();
     assert(d.nbDims == 3);

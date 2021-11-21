@@ -10,14 +10,15 @@
 namespace nvinfer1
 {
     int8EntroyCalibrator::int8EntroyCalibrator(const int &batchsize, const int &channels, const int &height, const int &width, const int &letterbox, const std::string &imgPath,
-        const std::string &calibTablePath):batchSize(batchsize), inputC(channels), inputH(height), inputW(width), letterBox(letterbox), calibTablePath(calibTablePath), imageIndex(0)
+                                               const std::string &calibTablePath) : batchSize(batchsize), inputC(channels), inputH(height), inputW(width), letterBox(letterbox), calibTablePath(calibTablePath), imageIndex(0)
     {
         inputCount = batchsize * channels * height * width;
         std::fstream f(imgPath);
         if (f.is_open())
         {
             std::string temp;
-            while (std::getline(f, temp)) imgPaths.push_back(temp);
+            while (std::getline(f, temp))
+                imgPaths.push_back(temp);
         }
         batchData = new float[inputCount];
         CUDA_CHECK(cudaMalloc(&deviceInput, inputCount * sizeof(float)));
@@ -35,18 +36,18 @@ namespace nvinfer1
         if (imageIndex + batchSize > uint(imgPaths.size()))
             return false;
 
-        float* ptr = batchData;
+        float *ptr = batchData;
         for (size_t j = imageIndex; j < imageIndex + batchSize; ++j)
         {
             cv::Mat img = cv::imread(imgPaths[j], cv::IMREAD_COLOR);
-            std::vector<float>inputData = prepareImage(img, inputC, inputH, inputW, letterBox);
+            std::vector<float> inputData = prepareImage(img, inputC, inputH, inputW, letterBox);
 
             int len = (int)(inputData.size());
             memcpy(ptr, inputData.data(), len * sizeof(float));
 
             ptr += inputData.size();
             std::cout << "Load image: " << imgPaths[j] << std::endl;
-            std::cout << "Progress: " << (j + 1)*100. / imgPaths.size() << "%" << std::endl;
+            std::cout << "Progress: " << (j + 1) * 100. / imgPaths.size() << "%" << std::endl;
         }
         imageIndex += batchSize;
         CUDA_CHECK(cudaMemcpy(deviceInput, batchData, inputCount * sizeof(float), cudaMemcpyHostToDevice));
@@ -54,7 +55,7 @@ namespace nvinfer1
         return true;
     }
 
-    const void* int8EntroyCalibrator::readCalibrationCache(std::size_t &length)
+    const void *int8EntroyCalibrator::readCalibrationCache(std::size_t &length)
     {
         calibrationCache.clear();
         std::ifstream input(calibTablePath, std::ios::binary);
@@ -62,7 +63,7 @@ namespace nvinfer1
         if (readCache && input.good())
         {
             std::copy(std::istream_iterator<char>(input), std::istream_iterator<char>(),
-                std::back_inserter(calibrationCache));
+                      std::back_inserter(calibrationCache));
         }
         length = calibrationCache.size();
         return length ? calibrationCache.data() : nullptr;
@@ -71,11 +72,11 @@ namespace nvinfer1
     void int8EntroyCalibrator::writeCalibrationCache(const void *cache, std::size_t length)
     {
         std::ofstream output(calibTablePath, std::ios::binary);
-        output.write(reinterpret_cast<const char*>(cache), length);
+        output.write(reinterpret_cast<const char *>(cache), length);
     }
 }
 
-std::vector<float> prepareImage(cv::Mat& img, int input_c, int input_h, int input_w, int letter_box)
+std::vector<float> prepareImage(cv::Mat &img, int input_c, int input_h, int input_w, int letter_box)
 {
     cv::Mat out;
     int image_w = img.cols;
@@ -100,7 +101,8 @@ std::vector<float> prepareImage(cv::Mat& img, int input_c, int input_h, int inpu
                 cv::Rect roi(0, abs(y), image_w, new_height);
                 out = img(roi);
             }
-            else {
+            else
+            {
                 out = img;
             }
             cv::resize(out, out, cv::Size(input_w, input_h), 0, 0, cv::INTER_CUBIC);

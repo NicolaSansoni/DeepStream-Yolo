@@ -13,11 +13,11 @@
 
 #include "activation_layer.h"
 
-nvinfer1::ILayer* activationLayer(
+nvinfer1::ILayer *activationLayer(
     int layerIdx,
     std::string activation,
-    nvinfer1::ILayer* output,
-    nvinfer1::ITensor* input,
-    nvinfer1::INetworkDefinition* network);
+    nvinfer1::ILayer *output,
+    nvinfer1::ITensor *input,
+    nvinfer1::INetworkDefinition *network);
 
 #endif

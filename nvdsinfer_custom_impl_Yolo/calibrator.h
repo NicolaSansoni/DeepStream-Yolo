@@ -16,15 +16,18 @@
 #define CUDA_CHECK(callstr)                                                                    \
     {                                                                                          \
         cudaError_t error_code = callstr;                                                      \
-        if (error_code != cudaSuccess) {                                                       \
+        if (error_code != cudaSuccess)                                                         \
+        {                                                                                      \
             std::cerr << "CUDA error " << error_code << " at " << __FILE__ << ":" << __LINE__; \
             assert(0);                                                                         \
         }                                                                                      \
     }
 #endif
 
-namespace nvinfer1 {
-    class int8EntroyCalibrator : public nvinfer1::IInt8EntropyCalibrator2 {
+namespace nvinfer1
+{
+    class int8EntroyCalibrator : public nvinfer1::IInt8EntropyCalibrator2
+    {
     public:
         int8EntroyCalibrator(const int &batchsize,
                              const int &channels,
@@ -50,13 +53,13 @@ namespace nvinfer1 {
         size_t imageIndex;
         size_t inputCount;
         std::vector<std::string> imgPaths;
-        float *batchData{ nullptr };
-        void  *deviceInput{ nullptr };
+        float *batchData{nullptr};
+        void *deviceInput{nullptr};
         bool readCache;
         std::vector<char> calibrationCache;
     };
 }
 
-std::vector<float> prepareImage(cv::Mat& img, int input_c, int input_h, int input_w, int letter_box);
+std::vector<float> prepareImage(cv::Mat &img, int input_c, int input_h, int input_w, int letter_box);
 
 #endif //CALIBRATOR_H

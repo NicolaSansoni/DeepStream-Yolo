@@ -12,10 +12,10 @@
 
 #include "NvInfer.h"
 
-nvinfer1::ILayer* upsampleLayer(
+nvinfer1::ILayer *upsampleLayer(
     int layerIdx,
-    std::map<std::string, std::string>& block,
-    nvinfer1::ITensor* input,
-    nvinfer1::INetworkDefinition* network);
+    std::map<std::string, std::string> &block,
+    nvinfer1::ITensor *input,
+    nvinfer1::INetworkDefinition *network);
 
 #endif

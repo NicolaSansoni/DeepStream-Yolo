@@ -48,63 +48,65 @@
 
 namespace
 {
-const char* YOLOLAYER_PLUGIN_VERSION {"1"};
-const char* YOLOLAYER_PLUGIN_NAME {"YoloLayer_TRT"};
+    const char *YOLOLAYER_PLUGIN_VERSION{"1"};
+    const char *YOLOLAYER_PLUGIN_NAME{"YoloLayer_TRT"};
 } // namespace
 
 class YoloLayer : public nvinfer1::IPluginV2
 {
 public:
-    YoloLayer (const void* data, size_t length);
-    YoloLayer (const uint& numBoxes, const uint& numClasses, const uint& gridSizeX, const uint& gridSizeY,
-                const uint model_type, const uint new_coords, const float scale_x_y, const float beta_nms,
-                const std::vector<float> anchors, const std::vector<std::vector<int>> mask);
-    const char* getPluginType () const noexcept override { return YOLOLAYER_PLUGIN_NAME; }
-    const char* getPluginVersion () const noexcept override { return YOLOLAYER_PLUGIN_VERSION; }
-    int getNbOutputs () const noexcept override { return 1; }
+    YoloLayer(const void *data, size_t length);
+    YoloLayer(const uint &numBoxes, const uint &numClasses, const uint &gridSizeX, const uint &gridSizeY,
+              const uint model_type, const uint new_coords, const float scale_x_y, const float beta_nms,
+              const std::vector<float> anchors, const std::vector<std::vector<int>> mask);
+    const char *getPluginType() const noexcept override { return YOLOLAYER_PLUGIN_NAME; }
+    const char *getPluginVersion() const noexcept override { return YOLOLAYER_PLUGIN_VERSION; }
+    int getNbOutputs() const noexcept override { return 1; }
 
-    nvinfer1::Dims getOutputDimensions (
-        int index, const nvinfer1::Dims* inputs,
+    nvinfer1::Dims getOutputDimensions(
+        int index, const nvinfer1::Dims *inputs,
         int nbInputDims) noexcept override;
 
-    bool supportsFormat (
+    bool supportsFormat(
         nvinfer1::DataType type, nvinfer1::PluginFormat format) const noexcept override;
 
-    void configureWithFormat (
-        const nvinfer1::Dims* inputDims, int nbInputs,
-        const nvinfer1::Dims* outputDims, int nbOutputs,
+    void configureWithFormat(
+        const nvinfer1::Dims *inputDims, int nbInputs,
+        const nvinfer1::Dims *outputDims, int nbOutputs,
         nvinfer1::DataType type, nvinfer1::PluginFormat format, int maxBatchSize) noexcept override;
 
-    int initialize () noexcept override { return 0; }
-    void terminate () noexcept override {}
-    size_t getWorkspaceSize (int maxBatchSize) const noexcept override { return 0; }
-    int enqueue (
-        int batchSize, void const* const* inputs, void* const* outputs,
-        void* workspace, cudaStream_t stream) noexcept override;
+    int initialize() noexcept override { return 0; }
+    void terminate() noexcept override {}
+    size_t getWorkspaceSize(int maxBatchSize) const noexcept override { return 0; }
+    int enqueue(
+        int batchSize, void const *const *inputs, void *const *outputs,
+        void *workspace, cudaStream_t stream) noexcept override;
     size_t getSerializationSize() const noexcept override;
-    void serialize (void* buffer) const noexcept override;
-    void destroy () noexcept override { delete this; }
-    nvinfer1::IPluginV2* clone() const noexcept override;
+    void serialize(void *buffer) const noexcept override;
+    void destroy() noexcept override { delete this; }
+    nvinfer1::IPluginV2 *clone() const noexcept override;
 
-    void setPluginNamespace (const char* pluginNamespace) noexcept override {
+    void setPluginNamespace(const char *pluginNamespace) noexcept override
+    {
         m_Namespace = pluginNamespace;
     }
-    virtual const char* getPluginNamespace () const noexcept override {
+    virtual const char *getPluginNamespace() const noexcept override
+    {
         return m_Namespace.c_str();
     }
 
 private:
-    uint m_NumBoxes {0};
-    uint m_NumClasses {0};
-    uint m_GridSizeX {0};
-    uint m_GridSizeY {0};
-    uint64_t m_OutputSize {0};
-    std::string m_Namespace {""};
+    uint m_NumBoxes{0};
+    uint m_NumClasses{0};
+    uint m_GridSizeX{0};
+    uint m_GridSizeY{0};
+    uint64_t m_OutputSize{0};
+    std::string m_Namespace{""};
 
-    uint m_type {0};
-    uint m_new_coords {0};
-    float m_scale_x_y {0};
-    float m_beta_nms {0};
+    uint m_type{0};
+    uint m_new_coords{0};
+    float m_scale_x_y{0};
+    float m_beta_nms{0};
     std::vector<float> m_Anchors;
     std::vector<std::vector<int>> m_Mask;
 };
@@ -112,40 +114,43 @@ private:
 class YoloLayerPluginCreator : public nvinfer1::IPluginCreator
 {
 public:
-    YoloLayerPluginCreator () {}
-    ~YoloLayerPluginCreator () {}
+    YoloLayerPluginCreator() {}
+    ~YoloLayerPluginCreator() {}
 
-    const char* getPluginName () const noexcept override { return YOLOLAYER_PLUGIN_NAME; }
-    const char* getPluginVersion () const noexcept override { return YOLOLAYER_PLUGIN_VERSION; }
+    const char *getPluginName() const noexcept override { return YOLOLAYER_PLUGIN_NAME; }
+    const char *getPluginVersion() const noexcept override { return YOLOLAYER_PLUGIN_VERSION; }
 
-    const nvinfer1::PluginFieldCollection* getFieldNames() noexcept override {
-        std::cerr<< "YoloLayerPluginCreator::getFieldNames is not implemented" << std::endl;
-        return nullptr;
-    }
-
-    nvinfer1::IPluginV2* createPlugin (
-        const char* name, const nvinfer1::PluginFieldCollection* fc) noexcept override
+    const nvinfer1::PluginFieldCollection *getFieldNames() noexcept override
     {
-        std::cerr<< "YoloLayerPluginCreator::getFieldNames is not implemented";
+        std::cerr << "YoloLayerPluginCreator::getFieldNames is not implemented" << std::endl;
         return nullptr;
     }
 
-    nvinfer1::IPluginV2* deserializePlugin (
-        const char* name, const void* serialData, size_t serialLength) noexcept override
+    nvinfer1::IPluginV2 *createPlugin(
+        const char *name, const nvinfer1::PluginFieldCollection *fc) noexcept override
+    {
+        std::cerr << "YoloLayerPluginCreator::getFieldNames is not implemented";
+        return nullptr;
+    }
+
+    nvinfer1::IPluginV2 *deserializePlugin(
+        const char *name, const void *serialData, size_t serialLength) noexcept override
     {
         std::cout << "Deserialize yoloLayer plugin: " << name << std::endl;
         return new YoloLayer(serialData, serialLength);
     }
 
-    void setPluginNamespace(const char* libNamespace) noexcept override {
+    void setPluginNamespace(const char *libNamespace) noexcept override
+    {
         m_Namespace = libNamespace;
     }
-    const char* getPluginNamespace() const noexcept override {
+    const char *getPluginNamespace() const noexcept override
+    {
         return m_Namespace.c_str();
     }
 
 private:
-    std::string m_Namespace {""};
+    std::string m_Namespace{""};
 };
 
 extern int kNUM_CLASSES;

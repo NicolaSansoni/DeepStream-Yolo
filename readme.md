@@ -4,65 +4,66 @@ NVIDIA DeepStream SDK 6.0 configuration for YOLO models
 
 ### Future updates (comming soon, stay tuned)
 
-* New documentation for multiple models
-* DeepStream tutorials
-* Native PyTorch support (YOLOv5 and YOLOR)
-* Native PP-YOLO support
-* Models benchmark
+- New documentation for multiple models
+- DeepStream tutorials
+- Native PyTorch support (YOLOv5 and YOLOR)
+- Native PP-YOLO support
+- Models benchmark
 
 **NOTE**: The support for YOLOv5 was removed in this current update. If you want the old repo version, please use the commit 297e0e9 and DeepStream 5.1 requirements.
 
 ### Improvements on this repository
 
-* Darknet CFG params parser (it doesn't need to edit nvdsparsebbox_Yolo.cpp or another file for native models)
-* Support for new_coords, beta_nms and scale_x_y params
-* Support for new models
-* Support for new layers types
-* Support for new activations
-* Support for convolutional groups
-* Support for INT8 calibration
-* Support for non square models
+- Darknet CFG params parser (it doesn't need to edit nvdsparsebbox_Yolo.cpp or another file for native models)
+- Support for new_coords, beta_nms and scale_x_y params
+- Support for new models
+- Support for new layers types
+- Support for new activations
+- Support for convolutional groups
+- Support for INT8 calibration
+- Support for non square models
 
 ##
 
 ### Getting started
 
-* [Requirements](#requirements)
-* [Tested models](#tested-models)
-* [dGPU installation](#dgpu-installation)
-* [Basic usage](#basic-usage)
-* [INT8 calibration](#int8-calibration)
-* [Using your custom model](docs/customModels.md)
+- [Requirements](#requirements)
+- [Tested models](#tested-models)
+- [dGPU installation](#dgpu-installation)
+- [Basic usage](#basic-usage)
+- [INT8 calibration](#int8-calibration)
+- [Using your custom model](docs/customModels.md)
 
 ##
 
 ### Requirements
 
-* [Ubuntu 18.04](https://releases.ubuntu.com/18.04.6/)
-* [CUDA 11.4.3](https://developer.nvidia.com/cuda-toolkit)
-* [TensorRT 8.0 GA (8.0.1)](https://developer.nvidia.com/tensorrt)
-* [cuDNN >= 8.2](https://developer.nvidia.com/cudnn)
-* [NVIDIA Driver >= 470.63.01](https://www.nvidia.com.br/Download/index.aspx)
-* [NVIDIA DeepStream SDK 6.0](https://developer.nvidia.com/deepstream-sdk)
-* [DeepStream-Yolo](https://github.com/marcoslucianops/DeepStream-Yolo)
+- [Ubuntu 18.04](https://releases.ubuntu.com/18.04.6/)
+- [CUDA 11.4.3](https://developer.nvidia.com/cuda-toolkit)
+- [TensorRT 8.0 GA (8.0.1)](https://developer.nvidia.com/tensorrt)
+- [cuDNN >= 8.2](https://developer.nvidia.com/cudnn)
+- [NVIDIA Driver >= 470.63.01](https://www.nvidia.com.br/Download/index.aspx)
+- [NVIDIA DeepStream SDK 6.0](https://developer.nvidia.com/deepstream-sdk)
+- [DeepStream-Yolo](https://github.com/marcoslucianops/DeepStream-Yolo)
 
 ##
 
 ### Tested models
-* [YOLOv4x-Mish](https://github.com/AlexeyAB/darknet) [[cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4x-mish.cfg)] [[weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4x-mish.weights)]
-* [YOLOv4-CSP](https://github.com/WongKinYiu/ScaledYOLOv4/tree/yolov4-csp) [[cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-csp.cfg)] [[weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-csp.weights)]
-* [YOLOv4](https://github.com/AlexeyAB/darknet) [[cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)] [[weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights)]
-* [YOLOv4-Tiny](https://github.com/AlexeyAB/darknet) [[cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg)] [[weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)]
-* [YOLOv3-SPP](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-spp.cfg)] [[weights](https://pjreddie.com/media/files/yolov3-spp.weights)]
-* [YOLOv3](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3.cfg)] [[weights](https://pjreddie.com/media/files/yolov3.weights)]
-* [YOLOv3-Tiny-PRN](https://github.com/WongKinYiu/PartialResidualNetworks) [[cfg](https://raw.githubusercontent.com/WongKinYiu/PartialResidualNetworks/master/cfg/yolov3-tiny-prn.cfg)] [[weights](https://github.com/WongKinYiu/PartialResidualNetworks/raw/master/model/yolov3-tiny-prn.weights)]
-* [YOLOv3-Tiny](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-tiny.cfg)] [[weights](https://pjreddie.com/media/files/yolov3-tiny.weights)]
-* [YOLOv3-Lite](https://github.com/dog-qiuqiu/MobileNet-Yolo) [[cfg](https://raw.githubusercontent.com/dog-qiuqiu/MobileNet-Yolo/master/MobileNetV2-YOLOv3-Lite/COCO/MobileNetV2-YOLOv3-Lite-coco.cfg)] [[weights](https://github.com/dog-qiuqiu/MobileNet-Yolo/raw/master/MobileNetV2-YOLOv3-Lite/COCO/MobileNetV2-YOLOv3-Lite-coco.weights)]
-* [YOLOv3-Nano](https://github.com/dog-qiuqiu/MobileNet-Yolo) [[cfg](https://raw.githubusercontent.com/dog-qiuqiu/MobileNet-Yolo/master/MobileNetV2-YOLOv3-Nano/COCO/MobileNetV2-YOLOv3-Nano-coco.cfg)] [[weights](https://github.com/dog-qiuqiu/MobileNet-Yolo/raw/master/MobileNetV2-YOLOv3-Nano/COCO/MobileNetV2-YOLOv3-Nano-coco.weights)]
-* [YOLO-Fastest 1.1](https://github.com/dog-qiuqiu/Yolo-Fastest) [[cfg](https://raw.githubusercontent.com/dog-qiuqiu/Yolo-Fastest/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.cfg)] [[weights](https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.weights)]
-* [YOLO-Fastest-XL 1.1](https://github.com/dog-qiuqiu/Yolo-Fastest) [[cfg](https://raw.githubusercontent.com/dog-qiuqiu/Yolo-Fastest/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1.cfg)] [[weights](https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1.weights)]
-* [YOLOv2](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2.cfg)] [[weights](https://pjreddie.com/media/files/yolov2.weights)]
-* [YOLOv2-Tiny](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2-tiny.cfg)] [[weights](https://pjreddie.com/media/files/yolov2-tiny.weights)]
+
+- [YOLOv4x-Mish](https://github.com/AlexeyAB/darknet) [[cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4x-mish.cfg)] [[weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4x-mish.weights)]
+- [YOLOv4-CSP](https://github.com/WongKinYiu/ScaledYOLOv4/tree/yolov4-csp) [[cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-csp.cfg)] [[weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-csp.weights)]
+- [YOLOv4](https://github.com/AlexeyAB/darknet) [[cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)] [[weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights)]
+- [YOLOv4-Tiny](https://github.com/AlexeyAB/darknet) [[cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg)] [[weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)]
+- [YOLOv3-SPP](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-spp.cfg)] [[weights](https://pjreddie.com/media/files/yolov3-spp.weights)]
+- [YOLOv3](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3.cfg)] [[weights](https://pjreddie.com/media/files/yolov3.weights)]
+- [YOLOv3-Tiny-PRN](https://github.com/WongKinYiu/PartialResidualNetworks) [[cfg](https://raw.githubusercontent.com/WongKinYiu/PartialResidualNetworks/master/cfg/yolov3-tiny-prn.cfg)] [[weights](https://github.com/WongKinYiu/PartialResidualNetworks/raw/master/model/yolov3-tiny-prn.weights)]
+- [YOLOv3-Tiny](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-tiny.cfg)] [[weights](https://pjreddie.com/media/files/yolov3-tiny.weights)]
+- [YOLOv3-Lite](https://github.com/dog-qiuqiu/MobileNet-Yolo) [[cfg](https://raw.githubusercontent.com/dog-qiuqiu/MobileNet-Yolo/master/MobileNetV2-YOLOv3-Lite/COCO/MobileNetV2-YOLOv3-Lite-coco.cfg)] [[weights](https://github.com/dog-qiuqiu/MobileNet-Yolo/raw/master/MobileNetV2-YOLOv3-Lite/COCO/MobileNetV2-YOLOv3-Lite-coco.weights)]
+- [YOLOv3-Nano](https://github.com/dog-qiuqiu/MobileNet-Yolo) [[cfg](https://raw.githubusercontent.com/dog-qiuqiu/MobileNet-Yolo/master/MobileNetV2-YOLOv3-Nano/COCO/MobileNetV2-YOLOv3-Nano-coco.cfg)] [[weights](https://github.com/dog-qiuqiu/MobileNet-Yolo/raw/master/MobileNetV2-YOLOv3-Nano/COCO/MobileNetV2-YOLOv3-Nano-coco.weights)]
+- [YOLO-Fastest 1.1](https://github.com/dog-qiuqiu/Yolo-Fastest) [[cfg](https://raw.githubusercontent.com/dog-qiuqiu/Yolo-Fastest/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.cfg)] [[weights](https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.weights)]
+- [YOLO-Fastest-XL 1.1](https://github.com/dog-qiuqiu/Yolo-Fastest) [[cfg](https://raw.githubusercontent.com/dog-qiuqiu/Yolo-Fastest/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1.cfg)] [[weights](https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1.weights)]
+- [YOLOv2](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2.cfg)] [[weights](https://pjreddie.com/media/files/yolov2.weights)]
+- [YOLOv2-Tiny](https://github.com/pjreddie/darknet) [[cfg](https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2-tiny.cfg)] [[weights](https://pjreddie.com/media/files/yolov2-tiny.weights)]
 
 ##
 
@@ -110,14 +111,14 @@ sudo apt-get install dkms
 sudo nano /etc/modprobe.d/blacklist-nouveau.conf
 ```
 
-* Add
+- Add
 
 ```
 blacklist nouveau
 options nouveau modeset=0
 ```
 
-* Run
+- Run
 
 ```
 sudo update-initramfs -u
@@ -145,20 +146,20 @@ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/
 sudo sh cuda_11.4.3_470.82.01_linux.run
 ```
 
-* Export environment variables
+- Export environment variables
 
 ```
 nano ~/.bashrc
 ```
 
-* Add
+- Add
 
 ```
 export PATH=/usr/local/cuda-11.4/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ```
 
-* Run
+- Run
 
 ```
 source ~/.bashrc
@@ -215,13 +216,13 @@ cd DeepStream-Yolo
 
 #### 3. Compile lib
 
-* x86 platform
+- x86 platform
 
 ```
 CUDA_VER=11.4 make -C nvdsinfer_custom_impl_Yolo
 ```
 
-* Jetson platform
+- Jetson platform
 
 ```
 CUDA_VER=10.2 make -C nvdsinfer_custom_impl_Yolo
@@ -285,14 +286,14 @@ sudo apt-get install libopencv-dev
 
 #### 2. Compile/recompile the nvdsinfer_custom_impl_Yolo lib with OpenCV support
 
-* x86 platform
+- x86 platform
 
 ```
 cd DeepStream-Yolo
 CUDA_VER=11.4 OPENCV=1 make -C nvdsinfer_custom_impl_Yolo
 ```
 
-* Jetson platform
+- Jetson platform
 
 ```
 cd DeepStream-Yolo
@@ -337,7 +338,7 @@ network-mode=0
 ...
 ```
 
-* To
+- To
 
 ```
 ...

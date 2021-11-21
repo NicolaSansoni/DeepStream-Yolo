@@ -58,21 +58,23 @@ struct TensorInfo
     std::vector<uint> masks;
     std::vector<float> anchors;
     int bindingIndex{-1};
-    float* hostBuffer{nullptr};
+    float *hostBuffer{nullptr};
 };
 
-class Yolo : public IModelParser {
+class Yolo : public IModelParser
+{
 public:
-    Yolo(const NetworkInfo& networkInfo);
+    Yolo(const NetworkInfo &networkInfo);
     ~Yolo() override;
     bool hasFullDimsSupported() const override { return false; }
-    const char* getModelName() const override {
+    const char *getModelName() const override
+    {
         return m_ConfigFilePath.empty() ? m_NetworkType.c_str()
                                         : m_ConfigFilePath.c_str();
     }
-    NvDsInferStatus parseModel(nvinfer1::INetworkDefinition& network) override;
+    NvDsInferStatus parseModel(nvinfer1::INetworkDefinition &network) override;
 
-    nvinfer1::ICudaEngine *createEngine (nvinfer1::IBuilder* builder);
+    nvinfer1::ICudaEngine *createEngine(nvinfer1::IBuilder *builder);
 
 protected:
     const std::string m_NetworkType;
@@ -95,7 +97,7 @@ protected:
 
 private:
     NvDsInferStatus buildYoloNetwork(
-        std::vector<float>& weights, nvinfer1::INetworkDefinition& network);
+        std::vector<float> &weights, nvinfer1::INetworkDefinition &network);
     std::vector<std::map<std::string, std::string>> parseConfigFile(
         const std::string cfgFilePath);
     void parseConfigBlocks();

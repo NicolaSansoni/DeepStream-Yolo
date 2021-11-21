@@ -10,13 +10,13 @@
 
 #include "activation_layer.h"
 
-nvinfer1::ILayer* shortcutLayer(
+nvinfer1::ILayer *shortcutLayer(
     int layerIdx,
     std::string activation,
     std::string inputVol,
     std::string shortcutVol,
-    nvinfer1::ITensor* input,
-    nvinfer1::ITensor* shortcutTensor,
-    nvinfer1::INetworkDefinition* network);
+    nvinfer1::ITensor *input,
+    nvinfer1::ITensor *shortcutTensor,
+    nvinfer1::INetworkDefinition *network);
 
 #endif
