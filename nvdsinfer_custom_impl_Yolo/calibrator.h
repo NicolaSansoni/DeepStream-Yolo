@@ -38,10 +38,10 @@ namespace nvinfer1
                              const std::string &calibTablePath);
 
         virtual ~int8EntroyCalibrator();
-        int getBatchSize() const override { return batchSize; }
-        bool getBatch(void *bindings[], const char *names[], int nbBindings) override;
-        const void *readCalibrationCache(std::size_t &length) override;
-        void writeCalibrationCache(const void *ptr, std::size_t length) override;
+        int getBatchSize() const noexcept override { return batchSize; }
+        bool getBatch(void *bindings[], const char *names[], int nbBindings) noexcept override;
+        const void *readCalibrationCache(std::size_t &length) noexcept override;
+        void writeCalibrationCache(const void *ptr, std::size_t length) noexcept override;
 
     private:
         int batchSize;

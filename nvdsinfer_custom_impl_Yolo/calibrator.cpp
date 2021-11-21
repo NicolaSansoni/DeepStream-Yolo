@@ -31,7 +31,7 @@ namespace nvinfer1
             delete[] batchData;
     }
 
-    bool int8EntroyCalibrator::getBatch(void **bindings, const char **names, int nbBindings)
+    bool int8EntroyCalibrator::getBatch(void **bindings, const char **names, int nbBindings) noexcept
     {
         if (imageIndex + batchSize > uint(imgPaths.size()))
             return false;
@@ -55,7 +55,7 @@ namespace nvinfer1
         return true;
     }
 
-    const void *int8EntroyCalibrator::readCalibrationCache(std::size_t &length)
+    const void *int8EntroyCalibrator::readCalibrationCache(std::size_t &length) noexcept
     {
         calibrationCache.clear();
         std::ifstream input(calibTablePath, std::ios::binary);
@@ -69,7 +69,7 @@ namespace nvinfer1
         return length ? calibrationCache.data() : nullptr;
     }
 
-    void int8EntroyCalibrator::writeCalibrationCache(const void *cache, std::size_t length)
+    void int8EntroyCalibrator::writeCalibrationCache(const void *cache, std::size_t length) noexcept
     {
         std::ofstream output(calibTablePath, std::ios::binary);
         output.write(reinterpret_cast<const char *>(cache), length);

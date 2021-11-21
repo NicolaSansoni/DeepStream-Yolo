@@ -78,6 +78,7 @@ nvinfer1::ICudaEngine *Yolo::createEngine(nvinfer1::IBuilder *builder)
     parseConfigBlocks();
     orderParams(&m_OutputMasks);
 
+    nvinfer1::IBuilderConfig *config = builder->createBuilderConfig();
     if (m_NetworkMode == "INT8" && !fileExists(m_Int8CalibPath))
     {
         assert(builder->platformHasFastInt8());
@@ -103,8 +104,8 @@ nvinfer1::ICudaEngine *Yolo::createEngine(nvinfer1::IBuilder *builder)
             std::abort();
         }
         nvinfer1::int8EntroyCalibrator *calibrator = new nvinfer1::int8EntroyCalibrator(calib_batch_size, m_InputC, m_InputH, m_InputW, m_LetterBox, calib_image_list, m_Int8CalibPath);
-        builder->setInt8Mode(true);
-        builder->setInt8Calibrator(calibrator);
+        config->setFlag(nvinfer1::BuilderFlag::kINT8);
+        config->setInt8Calibrator(calibrator);
 #else
         std::cerr << "OpenCV is required to run INT8 calibrator" << std::endl;
         std::abort();
@@ -129,7 +130,6 @@ nvinfer1::ICudaEngine *Yolo::createEngine(nvinfer1::IBuilder *builder)
                   << std::endl;
     }
 
-    nvinfer1::IBuilderConfig *config = builder->createBuilderConfig();
     nvinfer1::ICudaEngine *engine = builder->buildEngineWithConfig(*network, *config);
     if (engine)
     {
