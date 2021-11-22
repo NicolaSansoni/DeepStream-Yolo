@@ -21,7 +21,7 @@ cudadec-memtype=0
 
 [sink0]
 enable=1
-type=2
+type=1
 sync=0
 gpu-id=0
 nvbuf-memory-type=0
