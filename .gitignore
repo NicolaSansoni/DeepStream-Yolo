@@ -7,3 +7,4 @@ calibration.txt
 *.engine
 .vscode/**
 !.vscode/c_cpp_properties.json
+**/*.mp4
