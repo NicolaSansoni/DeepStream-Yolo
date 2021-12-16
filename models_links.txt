@@ -1,55 +1,55 @@
-# YOLOv4x-Mish
-https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4x-mish.cfg
-https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4x-mish.weights
-
+# # YOLOv4x-Mish
+# https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4x-mish.cfg
+# https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4x-mish.weights
+ 
 # YOLOv4-CSP
 https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-csp.cfg
 https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-csp.weights
-
-# YOLOv4
-https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg
-https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
-
-# YOLOv4-Tiny
-https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg
-https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights
-
-# YOLOv3-SPP
-https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-spp.cfg
-https://pjreddie.com/media/files/yolov3-spp.weights
-
-# YOLOv3
-https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3.cfg
-https://pjreddie.com/media/files/yolov3.weights
-
-# YOLOv3-Tiny-PRN
-https://raw.githubusercontent.com/WongKinYiu/PartialResidualNetworks/master/cfg/yolov3-tiny-prn.cfg
-https://github.com/WongKinYiu/PartialResidualNetworks/raw/master/model/yolov3-tiny-prn.weights
-
-# YOLOv3-Tiny
-https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-tiny.cfg
-https://pjreddie.com/media/files/yolov3-tiny.weights
-
-# YOLOv3-Lite
-https://raw.githubusercontent.com/dog-qiuqiu/MobileNet-Yolo/master/MobileNetV2-YOLOv3-Lite/COCO/MobileNetV2-YOLOv3-Lite-coco.cfg
-https://github.com/dog-qiuqiu/MobileNet-Yolo/raw/master/MobileNetV2-YOLOv3-Lite/COCO/MobileNetV2-YOLOv3-Lite-coco.weights
-
-# YOLOv3-Nano
-https://raw.githubusercontent.com/dog-qiuqiu/MobileNet-Yolo/master/MobileNetV2-YOLOv3-Nano/COCO/MobileNetV2-YOLOv3-Nano-coco.cfg
-https://github.com/dog-qiuqiu/MobileNet-Yolo/raw/master/MobileNetV2-YOLOv3-Nano/COCO/MobileNetV2-YOLOv3-Nano-coco.weights
-
-# YOLO-Fastest 1.1
-https://raw.githubusercontent.com/dog-qiuqiu/Yolo-Fastest/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.cfg
-https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.weights
-
-# YOLO-Fastest-XL 1.1
-https://raw.githubusercontent.com/dog-qiuqiu/Yolo-Fastest/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1.cfg
-https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.weights
-
-# YOLOv2
-https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2.cfg
-https://pjreddie.com/media/files/yolov2.weights
-
-# YOLOv2-Tiny
-https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2-tiny.cfg
-https://pjreddie.com/media/files/yolov2-tiny.weights
+ 
+# # YOLOv4
+# https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg
+# https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
+# 
+# # YOLOv4-Tiny
+# https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg
+# https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights
+# 
+# # YOLOv3-SPP
+# https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-spp.cfg
+# https://pjreddie.com/media/files/yolov3-spp.weights
+# 
+# # YOLOv3
+# https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3.cfg
+# https://pjreddie.com/media/files/yolov3.weights
+# 
+# # YOLOv3-Tiny-PRN
+# https://raw.githubusercontent.com/WongKinYiu/PartialResidualNetworks/master/cfg/yolov3-tiny-prn.cfg
+# https://github.com/WongKinYiu/PartialResidualNetworks/raw/master/model/yolov3-tiny-prn.weights
+# 
+# # YOLOv3-Tiny
+# https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-tiny.cfg
+# https://pjreddie.com/media/files/yolov3-tiny.weights
+# 
+# # YOLOv3-Lite
+# https://raw.githubusercontent.com/dog-qiuqiu/MobileNet-Yolo/master/MobileNetV2-YOLOv3-Lite/COCO/MobileNetV2-YOLOv3-Lite-coco.cfg
+# https://github.com/dog-qiuqiu/MobileNet-Yolo/raw/master/MobileNetV2-YOLOv3-Lite/COCO/MobileNetV2-YOLOv3-Lite-coco.weights
+# 
+# # YOLOv3-Nano
+# https://raw.githubusercontent.com/dog-qiuqiu/MobileNet-Yolo/master/MobileNetV2-YOLOv3-Nano/COCO/MobileNetV2-YOLOv3-Nano-coco.cfg
+# https://github.com/dog-qiuqiu/MobileNet-Yolo/raw/master/MobileNetV2-YOLOv3-Nano/COCO/MobileNetV2-YOLOv3-Nano-coco.weights
+# 
+# # YOLO-Fastest 1.1
+# https://raw.githubusercontent.com/dog-qiuqiu/Yolo-Fastest/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.cfg
+# https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.weights
+# 
+# # YOLO-Fastest-XL 1.1
+# https://raw.githubusercontent.com/dog-qiuqiu/Yolo-Fastest/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1.cfg
+# https://github.com/dog-qiuqiu/Yolo-Fastest/raw/master/ModelZoo/yolo-fastest-1.1_coco/yolo-fastest-1.1-xl.weights
+# 
+# # YOLOv2
+# https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2.cfg
+# https://pjreddie.com/media/files/yolov2.weights
+# 
+# # YOLOv2-Tiny
+# https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov2-tiny.cfg
+# https://pjreddie.com/media/files/yolov2-tiny.weights
